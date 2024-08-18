@@ -1,0 +1,114 @@
+@import '../../App';
+
+.button {
+  cursor: pointer;
+  padding: 8px 20px;
+  border-radius: 8px;
+  border: 1px solid $color-text-one;
+  font-size: 15px;
+  font-weight: 600;
+  margin-right: 10px;
+  transition: all .2s;
+  font-family: $font-text;
+
+  &__time {
+    @extend .button;
+
+    &--active {
+      @extend .button__time;
+      border-radius: 20px;
+      color: $color-text-one;
+      background-color: #FBE4B8;
+    }
+
+    &--outline {
+      @extend .button;
+      border-radius: 20px;
+      background-color: transparent;
+      border: 1px solid $color-text-one;
+      color: $color-text-one;
+      transition: all .2s;
+
+      &:hover {
+        background-color: #FBE4B8;
+        color: $color-text-one;
+        box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+      }
+    }
+
+    &:hover {
+      box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+    }
+
+  }
+
+  &--active {
+    @extend .button;
+    color: $color-text-two;
+    background-color: $color-btn-one;
+
+    &:active {
+      background-color: $color-btn-one;
+      opacity: 0.6;
+    }
+
+
+    &:hover {
+      box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+    }
+  }
+
+
+  &--outline {
+    @extend .button;
+    background-color: transparent;
+    border: 1px solid $color-text-one;
+    color: $color-text-one;
+    transition: all .2s;
+
+    &:hover {
+      background-color: $color-text-one;
+      color: $color-text-two;
+      box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+    }
+
+    &:active {
+      background-color: $color-btn-one;
+      opacity: 0.6;
+    }
+  }
+
+
+  &__submit {
+    @extend body;
+    display: inline-block;
+    width: 100%;
+    padding: 10px 20px;
+    border-radius: 16px;
+    background-color: $color-btn-one;
+    border: none;
+    color: $color-text-two;
+    font-weight: 600;
+    cursor: pointer;
+
+    &:hover{
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
+  }
+
+  &__delete {
+    @extend body;
+    display: inline-block;
+    width: 100%;
+    padding: 10px 25px;
+    border-radius: 24px;
+    background-color: #F5916C;
+    border: none;
+    color: $color-text-two;
+    font-weight: 600;
+    cursor: pointer;
+    &:hover{
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
+  }
+}

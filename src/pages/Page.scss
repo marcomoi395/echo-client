@@ -1,0 +1,29 @@
+@import '../App';
+
+.budget-tracker-page {
+  &__budget-tracker-add {
+    margin-top: 125px;
+  }
+
+  &__divider{
+    display: none;
+  }
+
+  &__title{
+    @extend body;
+    padding: 0 15px
+  }
+}
+
+@media (max-width: 1200px){
+  .budget-tracker-page{
+    &__divider{
+      display: inline-block;
+    }
+
+    &__budget-tracker-add {
+      margin-top: 20px;
+    }
+
+  }
+}

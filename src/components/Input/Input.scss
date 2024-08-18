@@ -1,0 +1,19 @@
+@import '../../App';
+
+.input {
+  display: inline-block;
+  font-family: Montserrat, serif;
+  font-size: 16px;
+  font-weight: 600;
+  width: 100%;
+  padding: 23px 20px;
+  border-radius: 16px;
+  background-color: $color-card;
+  color: $color-text-one;
+  border: 0;
+  margin-bottom: 20px;
+
+  &::placeholder {
+    color: $color-text-one;
+  }
+}

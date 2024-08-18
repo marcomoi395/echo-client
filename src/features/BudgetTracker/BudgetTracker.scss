@@ -1,0 +1,204 @@
+@import '../../App';
+
+.table {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+
+  p {
+    @extend body;
+    margin: 8px;
+    color: $color-text-one;
+  }
+
+
+  &__col {
+    font-size: 18px;
+    padding: 0 10px;
+
+
+    &--description {
+      display: flex;
+      align-items: center;
+    }
+
+    &--delete,
+    &--no,
+    &--type,
+    &--amount,
+    &--date {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &--income, &--expense {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &--income {
+      p {
+        background-color: #C4EBD9;
+        padding: 4px 6px;
+        border-radius: 4px;
+        color: #177246;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+    }
+
+    &--expense {
+      p {
+        background-color: #ddaeae;
+        padding: 4px 6px;
+        border-radius: 4px;
+        color: #722d2d;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+    }
+
+    @media (max-width: 768px) {
+      &--initial {
+        display: inline-block;
+      }
+    }
+  }
+
+  &__header,
+  &__row {
+    padding: 10px 10px;
+    margin: 10px 0;
+  }
+
+  &__row {
+    background-color: $color-card;
+    border-radius: 16px;
+  }
+
+  &__col--date {
+    @media (max-width: 992px) {
+      display: none;
+    }
+  }
+}
+
+.filterType {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.timeFilterButton{
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.timeFilterDropdown{
+  font-family: $font-text;
+  display: none;
+  font-size: 18px;
+
+  &:hover{
+    color: $color-sider-hover;
+  }
+}
+
+.filter{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+@media (max-width: 1200px) {
+  .timeFilterButton {
+    display: none;
+  }
+
+  .timeFilterDropdown {
+    display: inline-block;
+  }
+
+}
+
+.budget-tracker-table{
+  &__footer{
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.budget-tracker-add {
+  .ant-radio-group {
+    display: flex;
+    align-content: center;
+    justify-content: space-around;
+    margin-bottom: 20px;
+
+    span, input {
+      font-family: Montserrat, serif;
+      font-size: 16px;
+      color: $color-text-one;
+      font-weight: 600;
+    }
+  }
+
+  .ant-picker {
+    display: inline-block;
+    width: 100%;
+    padding: 20px 20px;
+    border-radius: 16px;
+    border: none;
+    background-color: $color-card;
+    margin-bottom: 20px;
+
+    &:active{
+      border: 2px solid $color-text-one;
+
+    }
+
+    &-input{
+      span, input {
+        font-family: Montserrat, serif;
+        font-size: 16px;
+        color: $color-text-one;
+        font-weight: 600;
+      }
+
+    }
+  }
+}
+
+.ant-picker-now-btn{
+  color: $color-text-one;
+
+  &:hover{
+    color: $color-text-one;
+  }
+}
+
+
+
+
+//.ant-modal-content {
+//  background-color: $color-bg !important;
+//}
+
+
+
+
+
+
+

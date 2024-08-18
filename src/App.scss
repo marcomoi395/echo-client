@@ -1,0 +1,17 @@
+@import url(https://db.onlinewebfonts.com/c/6528ef2872df451c8e38cecd106dced8?family=CgQuirinusBd);
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+$color-bg: #FFF6F1;
+$color-card: #FCEEE5;
+$color-bg-sider: #3B3A48;
+$color-sider-hover: #8371A3;
+$color-text-one: #343764;
+$color-text-two: #EAEBEC;
+$color-btn-one: #303A5E;
+$color-btn-submit: #7347F2;
+$font-text: Montserrat;
+
+body{
+  font-family: $font-text;
+  font-weight: 500;
+}
