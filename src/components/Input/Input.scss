@@ -1,6 +1,7 @@
 @import '../../App';
 
 .input {
+  box-sizing: border-box;
   display: inline-block;
   font-family: Montserrat, serif;
   font-size: 16px;
@@ -12,6 +13,10 @@
   color: $color-text-one;
   border: 0;
   margin-bottom: 20px;
+
+  &:focus {
+    border: none !important;
+  }
 
   &::placeholder {
     color: $color-text-one;

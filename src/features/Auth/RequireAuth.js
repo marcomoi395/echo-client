@@ -24,7 +24,7 @@ const RequireAuth = ({children}) => {
             setLoading(false);
         };
         checkAuth();
-    }, [token, fetchAccessToken]);
+    }, [token, fetchAccessToken, dispatch]);
 
     if(loading) return <Loading/>
 

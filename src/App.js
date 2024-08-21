@@ -1,7 +1,7 @@
 import React from 'react';
 import {Navigate, Route, Routes} from 'react-router-dom';
 import LayoutDefault from './components/Layout/LayoutDefault';
-import Login from './features/Auth/Login';
+import Login from './features/Auth/Login/Login';
 import {selectCurrentToken} from "./features/Auth/authSlice";
 import {useSelector} from "react-redux";
 import RequireAuth from "./features/Auth/RequireAuth";

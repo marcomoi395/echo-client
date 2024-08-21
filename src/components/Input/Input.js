@@ -1,7 +1,7 @@
 import "./Input.scss"
 import {forwardRef} from "react";
 
-const Input = forwardRef(({placeholder, value, setValue, type, required}, ref) => {
+const Input = forwardRef(({placeholder, value, setValue, type, required, name}, ref) => {
     return(
         <input
             className={"input"}
@@ -11,6 +11,7 @@ const Input = forwardRef(({placeholder, value, setValue, type, required}, ref) =
             placeholder={placeholder}
             required={required}
             ref={ref}
+            name={name}
         />
     )
 })

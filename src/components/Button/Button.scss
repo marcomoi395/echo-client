@@ -80,7 +80,7 @@
 
 
   &__submit {
-    @extend body;
+    @extend .button;
     display: inline-block;
     width: 100%;
     padding: 10px 20px;
@@ -97,7 +97,7 @@
   }
 
   &__delete {
-    @extend body;
+    @extend .button;
     display: inline-block;
     width: 100%;
     padding: 10px 25px;
@@ -107,6 +107,24 @@
     color: $color-text-two;
     font-weight: 600;
     cursor: pointer;
+    &:hover{
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
+  }
+
+  &__login{
+    @extend .button;
+    display: inline-block;
+    width: 100%;
+    padding: 10px 20px;
+    border-radius: 16px;
+    background-color: $color-btn-submit;
+    border: none;
+    color: $color-text-two;
+    font-weight: 600;
+    cursor: pointer;
+    margin: 20px 0;
+
     &:hover{
       box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     }

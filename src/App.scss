@@ -1,5 +1,6 @@
 @import url(https://db.onlinewebfonts.com/c/6528ef2872df451c8e38cecd106dced8?family=CgQuirinusBd);
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Qwitcher+Grypen:wght@400;700&display=swap');
 
 $color-bg: #FFF6F1;
 $color-card: #FCEEE5;
@@ -10,6 +11,7 @@ $color-text-two: #EAEBEC;
 $color-btn-one: #303A5E;
 $color-btn-submit: #7347F2;
 $font-text: Montserrat;
+$font-text-two: Qwitcher Grypen;
 
 body{
   font-family: $font-text;

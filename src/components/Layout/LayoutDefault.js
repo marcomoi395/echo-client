@@ -12,6 +12,7 @@ import {
     UnorderedListOutlined
 } from "@ant-design/icons";
 import Loading from "../Loading";
+import Avatar from "../Avatar/Avatar";
 
 const {Header, Sider, Content} = Layout;
 
@@ -48,6 +49,12 @@ const LayoutDefault = () => {
         position: 'fixed',
     };
 
+    const onSelect = () => {
+        if(widthScreen <= 992 && !collapsed){
+            setCollapsed(true)
+        }
+    }
+
     return (<Layout>
         <Sider
             style={siderStyle}
@@ -64,13 +71,14 @@ const LayoutDefault = () => {
 
                 {!collapsed && widthScreen <= 992 ? (
                     <button className="sider__button--collapsed" onClick={() => setCollapsed(!collapsed)}>
-                        {collapsed ? <MenuUnfoldOutlined style={{fontSize: '28px'}}/> :
-                            <MenuFoldOutlined style={{fontSize: '28px'}}/>}
+                        {collapsed ? <MenuUnfoldOutlined style={{fontSize: '28px', color: "#EAEBEC"}}/> :
+                            <MenuFoldOutlined style={{fontSize: '28px', color: "#EAEBEC"}}/>}
                     </button>) : ''}
             </div>
 
             <Divider className={'sider__divider'}/>
             <Menu
+                onSelect={onSelect}
                 mode="inline"
                 items={items}
                 className={'sider__menu'}
@@ -86,12 +94,12 @@ const LayoutDefault = () => {
                 <Header className={'header'}>
                     <div className="header__left">
                         <button className="header__button--collapsed" onClick={() => setCollapsed(!collapsed)}>
-                            {collapsed ? <MenuUnfoldOutlined style={{fontSize: '28px'}}/> :
-                                <MenuFoldOutlined style={{fontSize: '28px'}}/>}
+                            {collapsed ? <MenuUnfoldOutlined style={{fontSize: '28px', color: "#343764"}}/> :
+                                <MenuFoldOutlined style={{fontSize: '28px', color: "#343764"}}/>}
                         </button>
                     </div>
                     <div className="header__right">
-                        infor
+                        <Avatar/>
                     </div>
                 </Header>)}
 

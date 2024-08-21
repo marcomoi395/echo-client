@@ -1,0 +1,81 @@
+@import '../../../App';
+
+.login {
+  height: 100vh;
+  background: $color-bg-sider;
+
+  &__logo {
+    background-color: $color-bg-sider;
+    color: $color-card;
+    //width: 100%;
+    //height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: CgQuirinusBd, sans-serif;
+    font-size: 50px;
+    margin: 30px 0 0 0;
+
+
+  }
+
+  &__slogan{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $color-bg-sider;
+    color: $color-card;
+    font-family: $font-text-two;
+    font-size: 30px;
+    margin: 0 0 150px 0;
+  }
+
+
+  &__form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    &-checkbox{
+      align-self: flex-start;
+      padding: 10px 10px;
+      background-color: $color-bg-sider;
+
+      span{
+        color: $color-card;
+        font-size: 16px;
+        font-weight: 500;
+        font-family: $font-text;
+      }
+
+    }
+  }
+
+  &__footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &-link a{
+      color: $color-text-two;
+      font-family: $font-text;
+      font-weight: 300;
+      font-size: 13px;
+    }
+  }
+}
+
+.login__form .checkbox-container {
+  align-self: flex-start; // Căn trái cho checkbox
+}
+
+.ant-checkbox-checked .ant-checkbox-inner {
+  background-color: $color-card !important;
+}
+
+.ant-checkbox-inner::after{
+  border: 2px solid $color-text-one !important;
+  border-top: 0 !important;
+  border-inline-start: 0 !important;
+}

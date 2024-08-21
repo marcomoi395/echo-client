@@ -53,6 +53,16 @@ const configAnt = {
             contentBg: '#FFF6F1',
             titleColor: '#343764',
         },
+        Notification: {
+        },
+        Dropdown: {
+            colorBgElevated: '#FFF6F1',
+            colorText: '#343764',
+            fontFamily: 'Montserrat',
+            fontSize: 16,
+            paddingXS: 8,
+            paddingXXS: 8,
+        },
         Message: {
             contentBg: '#FFF6F1',
         }
@@ -66,6 +76,8 @@ const configAnt = {
         colorSuccess: '#64e3af',
         colorError: '#e16b6b',
         colorText: '#343764',
+        colorSplit: '#515151',
+        colorBgElevated: '#FFF6F1',
     }
 }
 
