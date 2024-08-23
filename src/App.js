@@ -11,11 +11,9 @@ import BudgetTrackerPage from "./pages/BudgetTrackerPage";
 
 
 const App = () => {
-    const token = useSelector(selectCurrentToken);
-
     return (<Routes>
         {/* Public routes */}
-        <Route path="/auth/login" element={token ? <Navigate to="/dashboard"/> : <Login/>}/>
+        <Route path="/auth/login" element={<Login/>}/>
 
         {/* Protected routes */}
         <Route element={<LayoutDefault/>}>

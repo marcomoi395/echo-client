@@ -10,6 +10,7 @@ const RequireAuth = ({children}) => {
     const dispatch = useDispatch();
     const [fetchAccessToken] = useFetchAccessTokenMutation();
     const [loading, setLoading] = useState(true);
+    const location = useLocation();
 
     useEffect(() => {
         const checkAuth = async () => {
@@ -19,6 +20,8 @@ const RequireAuth = ({children}) => {
                     dispatch(setCredentials(result));
                 } catch {
                     dispatch(logOut());
+                } finally {
+                    setLoading(false);
                 }
             }
             setLoading(false);
@@ -26,14 +29,13 @@ const RequireAuth = ({children}) => {
         checkAuth();
     }, [token, fetchAccessToken, dispatch]);
 
-    if(loading) return <Loading/>
+    if (loading) return <Loading/>
 
     if (!token) {
-        return <Navigate to="/auth/login" />;
+        return <Navigate to="/auth/login" state={{from: location}}/>;
     }
 
     return children;
-
 };
 
 export default RequireAuth;

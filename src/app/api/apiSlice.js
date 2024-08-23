@@ -17,13 +17,14 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
     let result = await baseQuery(args, api, extraOptions)
 
     if (result?.error?.originalStatus === 403) {
-        const refreshToken = await baseQuery('/auth/refresh', api, extraOptions)
-        if(refreshToken?.data){
+        const refreshToken = await baseQuery({
+            url: '/auth/refresh', method: 'POST'
+        }, api, extraOptions)
+        if (refreshToken?.data) {
             const email = api.getState().auth.email
             api.dispatch(setCredentials({...refreshToken.data, email}))
             let result = await baseQuery(args, api, extraOptions)
-        }
-        else{
+        } else {
             api.dispatch(logOut())
         }
     }
@@ -31,6 +32,5 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
 }
 
 export const apiSlice = createApi({
-    baseQuery: baseQueryWithReauth,
-    endpoints: builder => ({})
+    baseQuery: baseQueryWithReauth, endpoints: builder => ({})
 })

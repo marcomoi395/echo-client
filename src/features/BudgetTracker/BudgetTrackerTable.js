@@ -2,18 +2,13 @@ import React, {useEffect, useState} from 'react';
 import {Col, Row, Pagination, Dropdown, Space, message, Checkbox, Modal} from "antd";
 import './BudgetTracker.scss'
 import {
-    useDeleteBudgetTrackerMutation,
-    useGetBudgetTrackerQuery
+    useDeleteBudgetTrackerMutation, useGetBudgetTrackerQuery
 } from "./budgetTrackerApiSlice";
 import ButtonCustom from "../../components/Button/Button"
 import {
-    CaretDownOutlined,
-    CaretUpOutlined,
-    DownOutlined,
-    ExclamationCircleFilled
+    CaretDownOutlined, CaretUpOutlined, DownOutlined, ExclamationCircleFilled
 } from "@ant-design/icons";
 import formatDataUtil from "../../utils/formatData.util";
-
 
 
 const BudgetTrackerTable = () => {
@@ -96,16 +91,14 @@ const BudgetTrackerTable = () => {
     const handleDeleteItem = async () => {
         const key = 'delete';
 
-        if(!checkedList || checkedList.length === 0) {
+        if (!checkedList || checkedList.length === 0) {
             messageApi.info('Minimum selection of one item is required');
             return;
         }
 
         // Open loading message
         messageApi.open({
-            key,
-            type: 'loading',
-            content: 'Loading...',
+            key, type: 'loading', content: 'Loading...',
         });
 
         try {
@@ -114,18 +107,12 @@ const BudgetTrackerTable = () => {
 
             // Close loading message and open success message
             messageApi.open({
-                key,
-                type: 'success',
-                content: 'Items deleted successfully',
-                duration: 2,
+                key, type: 'success', content: 'Items deleted successfully', duration: 2,
             });
         } catch (error) {
             // Close loading message and open error message
             messageApi.open({
-                key,
-                type: 'error',
-                content: 'Error deleting budget tracker',
-                duration: 2,
+                key, type: 'error', content: 'Error deleting budget tracker', duration: 2,
             });
             console.error('Error deleting budget tracker:', error);
         }
@@ -134,8 +121,7 @@ const BudgetTrackerTable = () => {
     const showDeleteConfirm = () => {
         modal.confirm({
             title: 'Are you sure you want to delete these items?',
-            icon: <ExclamationCircleFilled style={{color: '#343764'}} />,
-            // content: 'Some descriptions',
+            icon: <ExclamationCircleFilled style={{color: '#343764'}}/>, // content: 'Some descriptions',
             okText: 'Yes',
             cancelText: 'No',
             onOk() {
@@ -158,8 +144,7 @@ const BudgetTrackerTable = () => {
     }];
 
     return (<>
-        {isLoading ? (<p>"Loading..."</p>) : (
-            <>
+        {isLoading ? (<p>"Loading..."</p>) : (<>
                 {messageContextHolder}
                 {modalContextHolder}
                 <div className="container">
@@ -180,20 +165,17 @@ const BudgetTrackerTable = () => {
                         </div>
                         <div className={"timeFilterDropdown"}>
                             <Dropdown menu={{
-                                itemsFilter, onClick,
-                            }}>
-                                <div
-                                    onClick={(e) => e.preventDefault()}
-
-                                >
+                                itemsFilter,
+                                }}
+                            >
+                                <a onClick={(e) => e.preventDefault()}>
                                     <Space>
                                         Filter By Time
                                         <DownOutlined style={{
                                             fontSize: '16px', color: '#343764', paddingLeft: '0px'
                                         }}/>
                                     </Space>
-
-                                </div>
+                                </a>
                             </Dropdown>
                         </div>
                         <div className="filterType">
@@ -326,8 +308,7 @@ const BudgetTrackerTable = () => {
                         </div>
                     </div>
                 </div>
-            </>
-        )}
+            </>)}
     </>)
 }
 

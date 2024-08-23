@@ -76,7 +76,7 @@ const configAnt = {
         colorSuccess: '#64e3af',
         colorError: '#e16b6b',
         colorText: '#343764',
-        colorSplit: '#515151',
+        // colorSplit: '#515151',
         colorBgElevated: '#FFF6F1',
     }
 }
@@ -84,15 +84,14 @@ const configAnt = {
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<React.StrictMode>
+root.render(
     <Provider store={store}>
         <Router>
             <ConfigProvider theme={configAnt}>
                 <App/>
             </ConfigProvider>
         </Router>
-    </Provider>
-</React.StrictMode>);
+    </Provider>);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
