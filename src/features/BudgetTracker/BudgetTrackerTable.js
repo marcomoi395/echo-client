@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Col, Row, Pagination, Dropdown, Space, message, Checkbox, Modal} from "antd";
+import {Col, Row, Pagination, Dropdown, Space, message, Checkbox, Modal, Button} from "antd";
 import './BudgetTracker.scss'
 import {
     useDeleteBudgetTrackerMutation, useGetBudgetTrackerQuery
@@ -133,7 +133,7 @@ const BudgetTrackerTable = () => {
         });
     };
 
-    const itemsFilter = [{
+    const items = [{
         label: 'Today', key: 'today',
     }, {
         label: 'Weekly', key: 'weekly',
@@ -145,29 +145,28 @@ const BudgetTrackerTable = () => {
 
     return (<>
         {isLoading ? (<p>"Loading..."</p>) : (<>
-                {messageContextHolder}
-                {modalContextHolder}
-                <div className="container">
-                    <div className={"filter"}>
-                        <div className={"timeFilterButton"}>
-                            <ButtonCustom title={"Today"}
-                                          type={timeFilter === 'today' ? "button__time--active" : "button__time--outline"}
-                                          handleButton={() => handleChangeTimeFilter("today")}/>
-                            <ButtonCustom title={"Weekly"}
-                                          type={timeFilter === 'weekly' ? "button__time--active" : "button__time--outline"}
-                                          handleButton={() => handleChangeTimeFilter("weekly")}/>
-                            <ButtonCustom title={"Monthly"}
-                                          type={timeFilter === 'monthly' ? "button__time--active" : "button__time--outline"}
-                                          handleButton={() => handleChangeTimeFilter("monthly")}/>
-                            <ButtonCustom title={"All Time"}
-                                          type={timeFilter === 'allTime' ? "button__time--active" : "button__time--outline"}
-                                          handleButton={() => handleChangeTimeFilter("allTime")}/>
-                        </div>
-                        <div className={"timeFilterDropdown"}>
-                            <Dropdown menu={{
-                                itemsFilter,
-                                }}
-                            >
+            {messageContextHolder}
+            {modalContextHolder}
+            <div className="container">
+                <div className={"filter"}>
+                    <div className={"timeFilterButton"}>
+                        <ButtonCustom title={"Today"}
+                                      type={timeFilter === 'today' ? "button__time--active" : "button__time--outline"}
+                                      handleButton={() => handleChangeTimeFilter("today")}/>
+                        <ButtonCustom title={"Weekly"}
+                                      type={timeFilter === 'weekly' ? "button__time--active" : "button__time--outline"}
+                                      handleButton={() => handleChangeTimeFilter("weekly")}/>
+                        <ButtonCustom title={"Monthly"}
+                                      type={timeFilter === 'monthly' ? "button__time--active" : "button__time--outline"}
+                                      handleButton={() => handleChangeTimeFilter("monthly")}/>
+                        <ButtonCustom title={"All Time"}
+                                      type={timeFilter === 'allTime' ? "button__time--active" : "button__time--outline"}
+                                      handleButton={() => handleChangeTimeFilter("allTime")}/>
+                    </div>
+                    <div className={"timeFilterDropdown"}>
+                        <Dropdown menu={{
+                            items, onClick,
+                        }}>
                                 <a onClick={(e) => e.preventDefault()}>
                                     <Space>
                                         Filter By Time
@@ -176,139 +175,138 @@ const BudgetTrackerTable = () => {
                                         }}/>
                                     </Space>
                                 </a>
-                            </Dropdown>
-                        </div>
-                        <div className="filterType">
-                            <ButtonCustom title={"Expense"}
-                                          type={type === 'expense' ? "button--active" : "button--outline"}
-                                          handleButton={handleChangeTypeFilter}
-                                          count={data?.totalItems - data?.totalIncomeItems}/>
-                            <ButtonCustom title={"Income"}
-                                          type={type === 'income' ? "button--active" : "button--outline"}
-                                          handleButton={handleChangeTypeFilter} count={data?.totalIncomeItems}/>
-                        </div>
+                        </Dropdown>
                     </div>
-
-                    <ul className="table">
-                        <li className="table__header">
+                    <div className="filterType">
+                        <ButtonCustom title={"Expense"}
+                                      type={type === 'expense' ? "button--active" : "button--outline"}
+                                      handleButton={handleChangeTypeFilter}
+                                      count={data?.totalItems - data?.totalIncomeItems}/>
+                        <ButtonCustom title={"Income"}
+                                      type={type === 'income' ? "button--active" : "button--outline"}
+                                      handleButton={handleChangeTypeFilter} count={data?.totalIncomeItems}/>
+                    </div>
+                </div>
+                <ul className="table">
+                    <li className="table__header">
+                        <Row>
+                            <Col xxl={1} xl={1} lg={1} md={1} sm={1} xs={1}
+                                 className="table__col table__col--delete">
+                                <Checkbox indeterminate={indeterminate} onChange={onCheckAllChange}
+                                          checked={checkedAll}/>
+                            </Col>
+                            <Col xxl={2} xl={2} lg={2} md={2} sm={2} xs={2} className="table__col table__col--no">
+                                <p>No</p>
+                            </Col>
+                            <Col xxl={4} xl={4} lg={4} md={4} sm={4} xs={4} className="table__col table__col--type">
+                                <p>Type</p>
+                            </Col>
+                            <Col xxl={8} xl={8} lg={8} md={10} sm={10} xs={10}
+                                 className="table__col table__col--description">
+                                <div onClick={() => handleSortBy("Description")} style={{cursor: "pointer"}}>
+                                    <p>
+                                        Description
+                                        {sort.key === "Description" ? (sort.value === 1 ? (<span>
+                                            <CaretUpOutlined style={{
+                                                fontSize: '16px', color: '#343764', paddingLeft: '8px'
+                                            }}/></span>) : (<span>
+                                            <CaretDownOutlined style={{
+                                                fontSize: '16px', color: '#343764', paddingLeft: '8px'
+                                            }}/></span>)) : []}
+                                    </p>
+                                </div>
+                            </Col>
+                            <Col xxl={5} xl={5} lg={5} md={7} sm={7} xs={7}
+                                 className="table__col table__col--amount">
+                                <div onClick={() => handleSortBy("Amount")} style={{cursor: "pointer"}}>
+                                    <p>
+                                        Amount
+                                        {sort.key === "Amount" ? (sort.value === 1 ? (<span>
+                                            <CaretUpOutlined style={{
+                                                fontSize: '16px',
+                                                color: '#343764',
+                                                paddingLeft: '8px',
+                                                cursor: "pointer"
+                                            }}/></span>) : (<span>
+                                            <CaretDownOutlined style={{
+                                                fontSize: '16px',
+                                                color: '#343764',
+                                                paddingLeft: '8px',
+                                                cursor: "pointer"
+                                            }}/></span>)) : []}
+                                    </p>
+                                </div>
+                            </Col>
+                            <Col xxl={4} xl={4} lg={4} md={0} sm={0} xs={0} className="table__col table__col--date">
+                                <div onClick={() => handleSortBy("Date")} style={{cursor: "pointer"}}>
+                                    <p>
+                                        Date
+                                        {sort.key === "Date" ? (sort.value === 1 ? (<span>
+                                            <CaretUpOutlined style={{
+                                                fontSize: '16px',
+                                                color: '#343764',
+                                                paddingLeft: '8px',
+                                                cursor: "pointer"
+                                            }}/></span>) : (<span>
+                                            <CaretDownOutlined style={{
+                                                fontSize: '16px',
+                                                color: '#343764',
+                                                paddingLeft: '8px',
+                                                cursor: "pointer"
+                                            }}/></span>)) : []}
+                                    </p>
+                                </div>
+                            </Col>
+                        </Row>
+                    </li>
+                    {dataAfterFormat.map((item, index) => {
+                        return (<li key={item._id} className="table__row table__row--expense">
                             <Row>
                                 <Col xxl={1} xl={1} lg={1} md={1} sm={1} xs={1}
                                      className="table__col table__col--delete">
-                                    <Checkbox indeterminate={indeterminate} onChange={onCheckAllChange}
-                                              checked={checkedAll}/>
+                                    <Checkbox onChange={(e) => onCheckChange(e, item._id)}
+                                              checked={checkedList.includes(item._id)}/>
                                 </Col>
-                                <Col xxl={2} xl={2} lg={2} md={2} sm={2} xs={2} className="table__col table__col--no">
-                                    <p>No</p>
+                                <Col xxl={2} xl={2} lg={2} md={2} sm={2} xs={2}
+                                     className="table__col table__col--no">
+                                    <p>{index + 1}</p>
                                 </Col>
-                                <Col xxl={4} xl={4} lg={4} md={4} sm={4} xs={4} className="table__col table__col--type">
-                                    <p>Type</p>
+                                <Col xxl={4} xl={4} lg={4} md={4} sm={4} xs={4}
+                                     className={item.type === 'Expense' ? 'table__col table__col--expense' : 'table__col table__col--income'}>
+                                    <p>{isSmallScreen ? item.type.charAt(0) : item.type}</p>
                                 </Col>
                                 <Col xxl={8} xl={8} lg={8} md={10} sm={10} xs={10}
                                      className="table__col table__col--description">
-                                    <div onClick={() => handleSortBy("Description")} style={{cursor: "pointer"}}>
-                                        <p>
-                                            Description
-                                            {sort.key === "Description" ? (sort.value === 1 ? (<span>
-                                            <CaretUpOutlined style={{
-                                                fontSize: '16px', color: '#343764', paddingLeft: '8px'
-                                            }}/></span>) : (<span>
-                                            <CaretDownOutlined style={{
-                                                fontSize: '16px', color: '#343764', paddingLeft: '8px'
-                                            }}/></span>)) : []}
-                                        </p>
-                                    </div>
+                                    <p>{item.description}</p>
                                 </Col>
                                 <Col xxl={5} xl={5} lg={5} md={7} sm={7} xs={7}
                                      className="table__col table__col--amount">
-                                    <div onClick={() => handleSortBy("Amount")} style={{cursor: "pointer"}}>
-                                        <p>
-                                            Amount
-                                            {sort.key === "Amount" ? (sort.value === 1 ? (<span>
-                                            <CaretUpOutlined style={{
-                                                fontSize: '16px',
-                                                color: '#343764',
-                                                paddingLeft: '8px',
-                                                cursor: "pointer"
-                                            }}/></span>) : (<span>
-                                            <CaretDownOutlined style={{
-                                                fontSize: '16px',
-                                                color: '#343764',
-                                                paddingLeft: '8px',
-                                                cursor: "pointer"
-                                            }}/></span>)) : []}
-                                        </p>
-                                    </div>
+                                    <p>{item.amount}</p>
                                 </Col>
-                                <Col xxl={4} xl={4} lg={4} md={0} sm={0} xs={0} className="table__col table__col--date">
-                                    <div onClick={() => handleSortBy("Date")} style={{cursor: "pointer"}}>
-                                        <p>
-                                            Date
-                                            {sort.key === "Date" ? (sort.value === 1 ? (<span>
-                                            <CaretUpOutlined style={{
-                                                fontSize: '16px',
-                                                color: '#343764',
-                                                paddingLeft: '8px',
-                                                cursor: "pointer"
-                                            }}/></span>) : (<span>
-                                            <CaretDownOutlined style={{
-                                                fontSize: '16px',
-                                                color: '#343764',
-                                                paddingLeft: '8px',
-                                                cursor: "pointer"
-                                            }}/></span>)) : []}
-                                        </p>
-                                    </div>
+                                <Col xxl={4} xl={4} lg={4} md={0} sm={0} xs={0}
+                                     className="table__col table__col--date">
+                                    <p>{item.date}</p>
                                 </Col>
                             </Row>
-                        </li>
-                        {dataAfterFormat.map((item, index) => {
-                            return (<li key={item._id} className="table__row table__row--expense">
-                                <Row>
-                                    <Col xxl={1} xl={1} lg={1} md={1} sm={1} xs={1}
-                                         className="table__col table__col--delete">
-                                        <Checkbox onChange={(e) => onCheckChange(e, item._id)}
-                                                  checked={checkedList.includes(item._id)}/>
-                                    </Col>
-                                    <Col xxl={2} xl={2} lg={2} md={2} sm={2} xs={2}
-                                         className="table__col table__col--no">
-                                        <p>{index + 1}</p>
-                                    </Col>
-                                    <Col xxl={4} xl={4} lg={4} md={4} sm={4} xs={4}
-                                         className={item.type === 'Expense' ? 'table__col table__col--expense' : 'table__col table__col--income'}>
-                                        <p>{isSmallScreen ? item.type.charAt(0) : item.type}</p>
-                                    </Col>
-                                    <Col xxl={8} xl={8} lg={8} md={10} sm={10} xs={10}
-                                         className="table__col table__col--description">
-                                        <p>{item.description}</p>
-                                    </Col>
-                                    <Col xxl={5} xl={5} lg={5} md={7} sm={7} xs={7}
-                                         className="table__col table__col--amount">
-                                        <p>{item.amount}</p>
-                                    </Col>
-                                    <Col xxl={4} xl={4} lg={4} md={0} sm={0} xs={0}
-                                         className="table__col table__col--date">
-                                        <p>{item.date}</p>
-                                    </Col>
-                                </Row>
-                            </li>)
-                        })}
-                    </ul>
-                    <div className={'budget-tracker-table__footer'}>
-                        <div>
-                            <ButtonCustom
-                                title={"Delete"}
-                                type="button__delete"
-                                handleButton={showDeleteConfirm}
-                            />
-                        </div>
-                        <div>
-                            <Pagination align="end" defaultCurrent={1} total={data?.totalItems} pageSize={pageSize}
-                                        responsive={true}
-                                        onChange={handlePagination} page={page}/>
-                        </div>
+                        </li>)
+                    })}
+                </ul>
+                <div className={'budget-tracker-table__footer'}>
+                    <div>
+                        <ButtonCustom
+                            title={"Delete"}
+                            type="button__delete"
+                            handleButton={showDeleteConfirm}
+                        />
+                    </div>
+                    <div>
+                        <Pagination align="end" defaultCurrent={1} total={data?.totalItems} pageSize={pageSize}
+                                    responsive={true}
+                                    onChange={handlePagination} page={page}/>
                     </div>
                 </div>
-            </>)}
+            </div>
+        </>)}
     </>)
 }
 
